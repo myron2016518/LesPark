@@ -1,0 +1,5 @@
+.container{
+	width: 100%;
+	width:expression(document.body.clientWidth <= 1300? "1300px": "auto");
+    min-width:1300px;
+}

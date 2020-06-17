@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [{
+      "appID": "9Z78449GFH.co.cc.lespro",
+      "paths": ["*"]
+    }, {
+      "appID": "9Z78449GFH.co.cc.lespro",
+      "paths": ["/line-auth/*"]
+    }, {
+      "appID": "9Z78449GFH.co.cc.lespro",
+      "paths": ["*", "/qq_conn/1101256905/*"]
+    }]
+  }
+}

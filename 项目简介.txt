@@ -1,0 +1,88 @@
+项目介绍： IM用的腾讯的，视频好像是七牛，多页面文件入口方式
+	送礼动画效果使用 svga  https://svga.io/integrated.html
+
+账号：15914399156
+123456
+
+loginhome.html： 登录后页面， 
+userinfo.html?id=59f030fea2e3a9131f6e1af3：个人页，
+topic.html?id=心情： 话题页。
+live.html?id=10084232  直播页面
+
+
+ 1：未登录首页：在现有基础上，增加推荐话题列表（0.5天）
+ 2：登录后页面：用户信息、推荐话题列表、动态流、和相关评论（1天）
+ 3：话题页面：话题信息、推荐话题列表、动态流、和相关评论（1天）
+ 4：个人页面：用户信息、推荐话题列表、动态流、和相关评论，是否直播（0.5天）
+  4：直播页：新增了送礼区，中间的播放器需要接入SVGA浏览器，能播放SVGA动画   （3-5天）
+  
+
+  http://localhost:8181/userinfo.html?id=59f030fea2e3a9131f6e1af3
+
+http://localhost:8181/topic.html?id=%E5%BF%83%E6%83%85
+
+http://localhost:8181/loginhome.html?id=59f030fea2e3a9131f6e1af3
+
+
+https://svga.io/
+
+ui:
+
+https://lanhuapp.com/web/#/item/project/board/detail?pid=3497f210-9f2d-47a4-aa48-18de242f5e3d&project_id=3497f210-9f2d-47a4-aa48-18de242f5e3d&image_id=e4a71c6f-afc1-4aab-b894-4051acb3b1d0
+
+https://org.modao.cc/app/eae42b33ce419029574afcc8552fc0bfbca15856?simulator_type=device&sticky#screen=sk9v1yolosrcui1
+
+
+送礼物 样式 giftItem
+
+{
+	avatar: "http://img2.lespark.cn/avatar/ali86nCjdFaRiWSWr_150x150"
+	giftName: "我送了一个钻戒"
+	giftNum: 1
+	giftType: 422
+	imgPic: "http://img-live.lespark.cn/gift/422_1542886456355.png"
+	isSVGA: 0
+	nickName: "如初"
+	num: 1
+	state: 1
+}
+
+
+[
+    {
+        "sess": {
+            "_impl": {
+                "skey": "GROUP5ee87f408117177053ce91c7", 
+                "type": "GROUP", 
+                "id": "5ee87f408117177053ce91c7", 
+                "name": "5ee87f408117177053ce91c7", 
+                "icon": "", 
+                "unread": 0, 
+                "isAutoRead": false, 
+                "time": 0, 
+                "curMaxMsgSeq": 0, 
+                "msgs": [ ], 
+                "isFinished": 1
+            }
+        }, 
+        "subType": 0, 
+        "fromAccount": "5e5a6899c714335cb4660384", 
+        "fromAccountNick": "5e5a6899c714335cb4660384", 
+        "isSend": false, 
+        "seq": 2705, 
+        "random": 374529016, 
+        "time": 1592302315, 
+        "elems": [
+            {
+                "type": "TIMCustomElem", 
+                "content": {
+                    "data": "{\"user_id\":\"5e5a6899c714335cb4660384\",\"nickname\":\"九千七.🐾\",\"avatar\":\"http:\\/\\/img2.lespark.cn\\/aliclientDLywmRXYpnONmmwqtI\",\"lgid\":\"9940632\",\"comment_type\":28,\"comment_sub_type\":12,\"rtc_message_type\":12,\"user_rtc_list\":[],\"is_disable_video\":false,\"live_many_people_type\":6,\"kIsMarryLive\":false,\"kMarryGiftId\":\"220\",\"kMarryGiftIcon\":\"http:\\/\\/img-live.lespark.cn\\/gift\\/220_1521774599619.png\",\"kMarryGiftNumber\":0,\"kMarryGiftPrice\":1,\"kMarryGiftName\":\"彩虹之心\",\"liveMusicName\":\"你的答案（女声完整版）（Cover：阿冗）\",\"is_slience\":false,\"liveManyVideoFreeInviteKey\":false,\"comment\":\"\"}", 
+                    "desc": "", 
+                    "ext": ""
+                }
+            }
+        ], 
+        "uniqueId": "11618261064696"
+    }
+]
+[{"sess":{"_impl":{"skey":"GROUP5ee87f408117177053ce91c7","type":"GROUP","id":"5ee87f408117177053ce91c7","name":"5ee87f408117177053ce91c7","icon":"","unread":0,"isAutoRead":false,"time":0,"curMaxMsgSeq":0,"msgs":[],"isFinished":1}},"subType":0,"fromAccount":"5e5a6899c714335cb4660384","fromAccountNick":"5e5a6899c714335cb4660384","isSend":false,"seq":2705,"random":374529016,"time":1592302315,"elems":[{"type":"TIMCustomElem","content":{"data":"{\"user_id\":\"5e5a6899c714335cb4660384\",\"nickname\":\"九千七.🐾\",\"avatar\":\"http:\\/\\/img2.lespark.cn\\/aliclientDLywmRXYpnONmmwqtI\",\"lgid\":\"9940632\",\"comment_type\":28,\"comment_sub_type\":12,\"rtc_message_type\":12,\"user_rtc_list\":[],\"is_disable_video\":false,\"live_many_people_type\":6,\"kIsMarryLive\":false,\"kMarryGiftId\":\"220\",\"kMarryGiftIcon\":\"http:\\/\\/img-live.lespark.cn\\/gift\\/220_1521774599619.png\",\"kMarryGiftNumber\":0,\"kMarryGiftPrice\":1,\"kMarryGiftName\":\"彩虹之心\",\"liveMusicName\":\"你的答案（女声完整版）（Cover：阿冗）\",\"is_slience\":false,\"liveManyVideoFreeInviteKey\":false,\"comment\":\"\"}","desc":"","ext":""}}],"uniqueId":"11618261064696"}]

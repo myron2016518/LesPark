@@ -1,0 +1,893 @@
+.header-container {
+  background: #fff;
+  -webkit-box-shadow: inset 0 -1px 0 0 #EBEBEB;
+  box-shadow: inset 0 -1px 0 0 #EBEBEB;
+}
+
+
+.lala_live a {
+  color: #9B9B9B;
+}
+
+input:focus {
+  outline: none;
+}
+
+html,
+body {
+  width: 100%;
+}
+
+.wrap {
+  max-width: 100%;
+  width: expression(document.body.clientWidth <=1100? "1100px": "auto");
+  min-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.fx {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  box-sizing: border-box;
+}
+
+.fxMiddle {
+  justify-content: center;
+  align-items: center;
+}
+
+/* 直播模块 */
+#Live {
+  position: relative;
+  max-width: 100%;
+  width: expression(document.body.clientWidth <=1100? "1100px": "auto");
+  min-width: 1100px;
+  /* height: 920px; */
+  background-color: rgba(245, 245, 245, 1);
+  /* background: url(https://img2.lespark.cn/web/liveBG.png) repeat; */
+}
+
+.LiveContent {
+  padding: 20px 0;
+  width: 1186px;
+  margin: 0 auto;
+  position: relative;
+
+}
+
+.LiveDialog,
+.endModal {
+  width: 517px;
+  height: 920px;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.liveTop {
+  position: absolute;
+  left: 220px;
+  top: 20px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 100px;
+  padding: 8px 20px;
+  height: 40px;
+  box-sizing: border-box;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+}
+
+.rank {
+  font-family: PingFangSC-Regular;
+  font-size: 24px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  line-height: 24px;
+  margin-left: 5px;
+}
+
+.rank>img {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.one {
+  margin-left: 0;
+}
+
+.two {
+  margin-left: 30px;
+}
+
+/* 电台 */
+.radioLive {
+  width: 517px;
+  height: 920px;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 6px;
+  margin-left: 10px;
+}
+
+.radioPic {
+  width: 517px;
+  height: 920px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 6px;
+
+}
+
+.userPic {
+  width: 100%;
+  margin: 0 auto;
+  z-index: 9;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  overflow: hidden;
+}
+
+.userImg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.circleWrap {
+  position: absolute;
+  top: 234px;
+  left: 50%;
+  margin-left: -119px;
+  border-radius: 50%;
+  animation: circleEvent 15s linear infinite;
+}
+
+.circleImg {
+  position: relative;
+}
+
+.circleImg,
+.circlePic {
+  width: 237px;
+  height: 237px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.avatarImg {
+  width: 146px;
+  height: 146px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -73px;
+  margin-top: -73px;
+
+
+}
+
+@keyframes circleEvent {
+  from {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.avatarPic {
+  width: 146px;
+  height: 146px;
+  border-radius: 50%;
+}
+
+.WavyLine {
+  position: absolute;
+  z-index: 999;
+  top: 300px;
+  left: 0;
+  width: 517px;
+  height: 100px;
+}
+
+
+@keyframes moveRight {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(517px);
+  }
+}
+
+.endModal {
+  background: #2F0232;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.endPic {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.endImg {
+  max-width: 100%;
+}
+
+.recordText {
+  position: absolute;
+  left: 179px;
+  top: 276px;
+  font-family: PingFangSC-Medium;
+  font-size: 40px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  text-align: center;
+  z-index: 2;
+
+}
+
+.recordBtn {
+  width: 280px;
+  height: 65px;
+  line-height: 65px;
+  text-align: center;
+  background: #FA3E54;
+  border-radius: 32.5px;
+  font-family: PingFangSC-Regular;
+  font-size: 30px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  text-align: center;
+  z-index: 2;
+}
+
+.RecordFollow {
+  position: absolute;
+  left: 260px;
+  margin-left: -140px;
+  bottom: 255px;
+}
+
+.RecordHot {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.50);
+  border-radius: 32.5px;
+  left: 260px;
+  margin-left: -140px;
+  bottom: 150px;
+  cursor: pointer;
+}
+
+.giftWrap {
+  position: absolute;
+  top: 685px;
+  left: 220px;
+  z-index: 9999;
+  width: 425px;
+}
+
+.giftWrap:nth-of-type(2n) {
+  bottom: 770px;
+}
+
+.giftItem {
+  border-radius: 153.96px;
+  height: 66px;
+  min-width: 308px;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 4px;
+}
+
+.bgImg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 308px;
+  height: 66px;
+  border-radius: 153.96px;
+  display: inline-block;
+}
+
+.gift_avatar {
+  width: 58px;
+  height: 58px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.message {
+  box-sizing: border-box;
+  margin-left: 8.7px;
+}
+
+.gift_userName {
+  font-family: PingFangSC-Regular;
+  font-size: 20.02px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  max-width: 160px;
+  overflow: hidden;
+  line-height: 20.02px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.gift_tips {
+  margin-top: 8.7px;
+  font-family: PingFangSC-Regular;
+  font-size: 16.94px;
+  color: #FFFF33;
+  letter-spacing: 0;
+  line-height: 16.94px;
+  max-width: 160px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.svgaImg {
+  width: 153px;
+  height: 150px;
+  display: inline-block;
+  position: absolute;
+  left: 184px;
+  bottom: -10px;
+}
+
+.normalImg {
+  width: 85px;
+  height: 85px;
+  display: inline-block;
+  position: absolute;
+  bottom: -10px;
+  left: 222px;
+  animation: showImg .5s;
+}
+
+@keyframes showImg {
+  from {
+    transform: translateX(-200px);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+.stateNum {
+  position: absolute;
+  left: 319px;
+  font-size: 32px;
+  color: yellow;
+  top: 13px;
+  animation: scaleNum 949s infinite;
+}
+
+@keyframes scaleNum {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(0.95);
+  }
+}
+
+.stateNum2 {
+  position: absolute;
+  left: 319px;
+  font-size: 32px;
+  color: yellow;
+  top: 13px;
+  animation: scaleNum 1s infinite;
+}
+
+@keyframes scaleNum2 {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(0.95);
+  }
+}
+
+.giftImg {
+  width: 85px;
+  height: 85px;
+  display: inline-block;
+}
+
+.ChatRoom {
+  width: 452px;
+  height: 920px;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin-left: 10px;
+}
+
+.userCell {
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
+  padding: 25px 12px;
+  /* background: #2F0232; */
+  border-radius: 6px;
+  justify-content: space-between;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.userInfo {
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.nickName {
+  font-size: 18px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.lgId {
+  font-size: 14px;
+  color: #D6D6D6;
+  letter-spacing: 0;
+}
+
+.follow {
+  background: #FA3E54;
+  border-radius: 22.5px;
+  width: 77px;
+  height: 34px;
+  line-height: 34px;
+  position: relative;
+  text-align: center;
+  margin-top: 7px;
+  cursor: pointer;
+}
+
+.add {
+  height: 14px;
+  width: 14px;
+}
+
+.follow>div {
+  font-size: 15px;
+  margin-left: 2px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  display: inline-block;
+}
+
+/* 聊天信息 */
+#ChatContent {
+  width: 452px;
+  height: 461px;
+  background: rgba(51, 51, 51, 1);
+  /* margin-top: 10px; 
+  width: 452px;
+  height: 710px;*/
+  overflow: hidden;
+  overflow-y: scroll;
+  /* background: #2F0232; */
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 15px 20px 41px 20px;
+}
+
+#ChatContent::-webkit-scrollbar,
+#livehot::-webkit-scrollbar,
+.giftContent .gc_row_1::-webkit-scrollbar {
+  width: 0 !important
+}
+
+#ChatContent,
+#livehot,
+.giftContent .gc_row_1 {
+  -ms-overflow-style: none;
+}
+
+#ChatContent,
+#livehot,
+.giftContent .gc_row_1 {
+  overflow: -moz-scrollbars-none;
+}
+
+.MeassgeCell {
+  margin-top: 15px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.chatAvatar {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.chatInfo {
+  margin-top: 15px;
+  flex: 1;
+  box-sizing: border-box;
+  font-size: 15px;
+  color: #fff;
+}
+
+.vipColor {
+  color: yellow;
+}
+
+.inBlock {
+  display: inline-block;
+}
+
+.label {
+  border-radius: 2px;
+  padding: 1px;
+  height: 15px;
+  box-sizing: border-box;
+  background: #a201ff;
+  display: inline-flex;
+  display: -webkit-inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+}
+
+.labelText {
+  font-family: PingFangSC-Medium;
+  font-size: 11px;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 0;
+  line-height: 15px;
+  text-align: center;
+  margin: 0 2px;
+}
+
+.textBackground {
+  background: #85FFE6;
+}
+
+.starLabel {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+}
+
+.chatNickName {
+  font-family: PingFangSC-Medium;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.70);
+  letter-spacing: 0;
+  margin-top: 5px;
+}
+
+.dot {
+  font-family: PingFangSC-Medium;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.70);
+  letter-spacing: 0;
+}
+
+.chatMessage {
+  font-family: PingFangSC-Medium;
+  font-size: 15px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+}
+
+.nextLine {
+  word-break: normal;
+  word-wrap: break-word;
+  white-space: pre-line;
+  flex-wrap: wrap;
+  display: inline;
+}
+
+.loveImg {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+/* 发送 */
+.sendCell {
+  margin: 18px 0;
+  width: 452px;
+  height: 70px;
+  /* background: #2F0232; */
+  border-radius: 6px;
+  position: relative;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.inputMessage {
+  width: 332px;
+  height: 45px;
+  border: 1px solid rgba(168, 168, 168, 1);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  /* border: none; */
+  color: #333333;
+  padding-left: 20px;
+}
+
+.hasText {
+  color: #fff;
+}
+
+/* 礼物 */
+.giftContent {
+  width: 452px;
+  height: 352px;
+  background: rgba(51, 51, 51, 1);
+  border-radius: 6px;
+}
+
+.giftContent .gc_row_1 {
+  height: 292px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.giftContent .gc_row_1 .gc_col {
+  text-align: center;
+  font-family: PingFangSC-Regular, PingFang SC;
+  width: 113px;
+  height: 133px;
+  float: left;
+}
+
+.giftContent .gc_row_1 .gc_col .gc_col_div {
+  padding-top: 20px;
+}
+
+.giftContent .gc_row_1 .gc_col .changegift {
+  box-shadow: -1px -1px 0px 0px rgba(255, 255, 255, 0.1);
+  border: 1px solid;
+  border-image: linear-gradient(135deg, rgba(235, 63, 163, 1), rgba(255, 88, 72, 1)) 1 1;
+  border-radius: 5px;
+}
+
+.giftContent .gc_row_1 .gc_col img {
+  width: 69px;
+  height: 69px;
+}
+
+.giftContent .gc_row_1 .gc_col .gc_col_d1 {
+  width: 15px;
+  height: 13px;
+}
+
+.giftContent .gc_row_2 .gc_col_d2 {
+  vertical-align: sub;
+  width: 25px;
+  height: 21px;
+}
+
+.giftContent .gc_row_1 .gc_col .gc_col_p1 {
+  font-size: 12px;
+  font-weight: 400;
+  color: #909399;
+  padding-bottom: 5px;
+}
+
+.giftContent .gc_row_1 .gc_col .gc_col_p2 {
+  font-size: 14px;
+  font-weight: 400;
+  color: #FFFFFF;
+  padding-bottom: 5px;
+}
+
+.giftContent .gc_row_2 {
+  height: 60px;
+  line-height: 60px;
+  color: #fff;
+  padding: 0 20px;
+  font-family: PingFangSC-Regular, PingFang SC;
+}
+
+.giftContent .gc_row_2 .gcr_col_1 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.giftContent .gc_row_2 .gcr_col_1 .gcr_col_b1 {
+  background: linear-gradient(270deg, rgba(255, 173, 18, 1) 0%, rgba(255, 210, 91, 1) 100%);
+  border-radius: 14px;
+  color: #fff;
+  font-size: 17px;
+  border: none;
+}
+
+.giftContent .gc_row_2 .gcr_col_i1 {
+  font-size: 18px;
+  font-weight: 400;
+  width: 65px;
+  float: left;
+}
+
+.giftContent .gc_row_2 .gcr_col_b2 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #fff;
+  padding: 10px;
+  background: rgba(250, 62, 84, 1);
+  border: 1px solid #FA3E54;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+
+
+}
+
+.giftContent .gc_row_2 .gcr_col_i1 .el-input__inner {
+  color: #fff;
+  background-color: #000;
+  border: 1px solid #FA3E54;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.sendBtn {
+  /* position: absolute;
+  right: 25px;
+  bottom: 21px;
+  font-size: 20px;
+  color: #FA3E54;
+  letter-spacing: 0; */
+  width: 60px;
+  height: 45px;
+  background: rgba(250, 62, 84, 1);
+  border-radius: 12px;
+  font-size: 20px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  line-height: 45px;
+  margin-left: 15px;
+  text-align: center;
+}
+
+.btnGroup {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-end;
+  align-items: flex-end;
+  height: 920px;
+  margin-top: 650px;
+  padding-left: 30px;
+}
+
+.hotBtn {
+  width: 88px;
+  height: 88px;
+  line-height: 88px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.50);
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.hotBtn1 {
+  width: 88px;
+  height: 88px;
+  margin-top: 10px;
+  line-height: 88px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.50);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btnImg {
+  margin-top: 25px;
+}
+
+.video-js.vjs-fluid,
+.video-js.vjs-16-9,
+.video-js.vjs-4-3 {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+}
+
+.showTip {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: showTip 2.5s ease-in 1;
+  opacity: 0;
+  z-index: 901;
+}
+
+@keyframes showTip {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.showText {
+  height: 150px;
+  padding: 0 50px;
+  line-height: 150px;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  font-size: 26px;
+}
+
+.nobleColor {
+  background: #ff6600;
+  color: #fff;
+  border: 2px;
+}
+
+.textColor {
+  color: #fef100;
+}
+
+.textColor2 {
+  color: #ffc500;
+
+}
