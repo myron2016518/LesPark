@@ -6,14 +6,16 @@
         <div class="LiveContent fx">
 
           <!-- 用户信息和热门直播 -->
-          <div class="userinfoandhot">
+          <div class="userinfoandhot tc_yy">
             <!-- 个人信息 -->
             <el-row>
               <img :src="liveObj['LiveAvatar']"
                    alt="头像"
-                   class="avatar" />
+                   @click="gotoUserInfo"
+                   class="avatar ll_cursor" />
             </el-row>
-            <el-row> <span>{{liveObj['LiveNickName']}}</span> </el-row>
+            <el-row> <span @click="gotoUserInfo"
+                    class="ll_cursor">{{liveObj['LiveNickName']}}</span> </el-row>
             <el-row class="live_user_id"> LesPark ID:{{lgId}}</el-row>
             <el-row class="live_user_1">
               <div class="label "
@@ -83,8 +85,19 @@
               <span>{{view_num}}</span>
             </div>
           </div>
+          <!--ID 和日期 -->
+          <div class="liveIdAndDate">
+            <div class="rankID"
+                 v-show="lgId!=''">
+              <img src="../../../images/live/live1.png" />
+              <span>ID:{{lgId}}</span>
+            </div>
+            <div class="rankID">
+              <span>{{userpclivetime}}</span>
+            </div>
+          </div>
           <!-- 直播 / 电台 -->
-          <video-player class="video-player vjs-custom-skin LiveDialog"
+          <video-player class="video-player vjs-custom-skin LiveDialog tc_yy2"
                         :style="{width:videowidth + 'px',height:videoHeight + 'px'}"
                         ref="videoPlayer"
                         :options="playerOptions"
@@ -229,6 +242,9 @@
                   <img :src="item.avatar"
                        class="chatAvatar"
                        v-if="item.avatar&&item.avatar!=''" />
+                  <!-- <div :style="{backgroundImage:'url('+item.avatar+')'}"
+                       v-if="item.avatar&&item.avatar!=''"
+                       class="chatAvatar"></div> -->
                   <div class="chatInfo "
                        :class="item.avatar&&item.avatar!='' ? 'hasLeft':''"
                        :style="{color:item.is_vip>0?'yellow':'#fff'}">
@@ -243,6 +259,9 @@
                   <img :src="item.avatar"
                        class="chatAvatar"
                        v-if="item.avatar&&item.avatar!=''" />
+                  <!-- <div :style="{backgroundImage:'url('+item.avatar+')'}"
+                       v-if="item.avatar&&item.avatar!=''"
+                       class="chatAvatar"></div> -->
                   <div class="chatInfo"
                        :class="item.avatar&&item.avatar!='' ? 'hasLeft':''"
                        :style="{color:item.is_vip>0?'yellow':'#fff'}">
@@ -336,7 +355,7 @@
                      disabled="disabled"
                      v-if="isSilence" />
               <input class="inputMessage"
-                     placeholder="说点什么吧..."
+                     placeholder="说点什么吧。"
                      v-model="inputMessage"
                      type="text"
                      maxlength="200"
@@ -350,7 +369,7 @@
                    v-else>{{$t('live.nav4')}}</div>
             </div>
             <!-- 礼物列表 -->
-            <div class="giftContent">
+            <div class="giftContent tc_yy2">
               <div class="gc_row_1">
                 <div class="gc_col"
                      v-for="(item,index) in giftList"
@@ -358,6 +377,8 @@
                   <div @click="changegiftItem(item)"
                        :class="changegift===item.type?'changegift gc_col_div':'gc_col_div'">
                     <img :src="item.imgPic" />
+                    <span class="gc_col_p3"
+                          v-if="item.isVip">VIP</span>
                     <p class="gc_col_p1">{{item.giftName}}</p>
                     <p class="gc_col_p2">{{item.giftDiamonds}} <img :src="diamondImg"
                            class="gc_col_d1" /></p>
@@ -365,7 +386,7 @@
                 </div>
               </div>
               <el-row class="gc_row_2">
-                <el-col :span="16"
+                <el-col :span="15"
                         class="gcr_col_1">
                   <img :src="diamondImg"
                        class="gc_col_d2" />
@@ -374,7 +395,7 @@
                              @click="pay"
                              size="small">充值</el-button>
                 </el-col>
-                <el-col :span="8">
+                <el-col :span="9">
                   <el-select v-model="giftSendNumber"
                              class="gcr_col_i1">
                     <el-option v-for="item in giftNumber"
@@ -586,6 +607,7 @@ export default {
       ],
       giftSendNumber: '1',
       diamondImg: "/static/img/diamond.png",   // 砖石图片
+      userpclivetime: '',
     };
   },
   computed: {
@@ -1124,7 +1146,7 @@ export default {
         })
         .then(res => {
           that.countData = res.data
-          that.lid = res.data.live_obj_id
+          that.lid = res.data.live_obj_id;
           //判断是否私密直播间
           that.isSecret(that.countData.live_obj_id)
         })
@@ -1178,6 +1200,7 @@ export default {
         .then(res => {
           let { data } = res;
           let {
+            add_date,
             live_obj_id,
             is_user_follow_live_user,
             live_user_lgid,
@@ -1224,6 +1247,8 @@ export default {
           this.my_level = my_level;
           this.my_title = my_title;
           this.firstPost = false;
+          this.userpclivetime = Utils.formatTime(add_date, 'Y.M.D');
+
           // this.user_sig = data.user_sig;
         })
         .then(() => {
@@ -1424,8 +1449,11 @@ export default {
           } else {
             this.$message({
               type: "info",
-              message: '网络错误'
+              message: '网络错误或者房间已关闭,即将为您返回首页。'
             })
+            setTimeout(() => {
+              location.href = '../index.html#hot';
+            }, 2000)
           }
         })
         .catch(res => {
@@ -1468,6 +1496,7 @@ export default {
             item.name = giftList[i].gift_message;
             item.giftName = giftList[i].gift_name;
             item.isSVGA = giftList[i].is_svga;
+            item.isVip = giftList[i].is_vip;
             item.imgPic = giftList[i].gift_pic; //礼物图片
             item.svgaUrl = giftList[i].svga_url;//svga礼物路径，如果没有返回空字符串
             item.giftDiamonds = giftList[i].gift_diamonds; //单价
@@ -1664,6 +1693,11 @@ export default {
     pay () {
       window.open('//api.lespark.cn/paynow_order?language=' + encodeURIComponent(encodeURIComponent(this.language)))
     },
+    gotoUserInfo () {
+      // console.log(this.liveObj["LiveId"]);
+      // location.href = '../userinfo.html?id=' + this.liveObj["LiveId"];
+      window.open('../userinfo.html?id=' + this.liveObj["LiveId"], '_blank');
+    },
   },
   watch: {
     attentionMsg (a, b) {
@@ -1791,9 +1825,9 @@ input:focus::-webkit-input-placeholder {
   color: #333333;
   overflow: hidden;
   text-align: center;
-  padding: 20px 5px 0px 5px;
+  padding-top: 20px;
   font-family: PingFangSC-Regular, PingFang SC;
-  margin-right: 10px;
+  margin-right: 15px;
 }
 .userinfoandhot .live_user_id,
 .userinfoandhot .live_user_1 {
@@ -1819,7 +1853,8 @@ input:focus::-webkit-input-placeholder {
   justify-content: center;
 }
 .userinfoandhot .live_hot_title {
-  padding: 10px 0;
+  padding: 12px 0;
+  margin-bottom: 12px;
   margin-top: 10px;
   font-size: 18px;
   font-weight: 500;
@@ -1841,5 +1876,19 @@ input:focus::-webkit-input-placeholder {
   box-shadow: 0px 2px 4px 0px rgba(216, 216, 216, 0.3),
     0px -2px 4px 0px rgba(216, 216, 216, 0.3);
   border-radius: 6px;
+}
+.tc_yy {
+  box-shadow: 0px 2px 4px 0px rgba(216, 216, 216, 0.3),
+    0px 2px 4px 0px rgba(216, 216, 216, 0.3),
+    0px -2px 4px 0px rgba(216, 216, 216, 0.3);
+  border-radius: 6px 6px 0px 0px;
+}
+.tc_yy2 {
+  box-shadow: 0px 2px 4px 0px rgba(216, 216, 216, 0.3),
+    0px -2px 4px 0px rgba(216, 216, 216, 0.3);
+  border-radius: 6px;
+}
+.ll_cursor {
+  cursor: pointer;
 }
 </style>

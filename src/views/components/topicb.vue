@@ -1,44 +1,35 @@
 <template>
-  <div :class="[ttype=='1'?'topmain':'tc_2_2']">
-    <div class="att-title clearflow"
-         v-if="ttype==='1'">
-      <div class="att-icon fl">
-        <img class="auto-img"
-             src="../images/hot1.png" />
-      </div>
-      <div class="fl word">{{$t('home.liveTitle3')}}</div>
-    </div>
-    <div class="tc_2_1"
-         v-else>
-      {{$t('home.liveTitle3')}}
+  <div class="tc_2_2">
+    <div class="tc_2_1">
+      <span class="tc_2_1_1">{{$t('home.liveTitle3')}}</span>
     </div>
     <!-- 有话题列表 -->
     <div class="wrap"
          v-if="noattention">
-      <template v-for="(item, index) in attentionList">
-        <div class="topicitem"
-             :key="index"
-             v-if="index<6"
-             @click="toLive(item.tag)">
-          <div class="outimg">
-            <div class="imgbox floatleft"
-                 style="display: table-cell;vertical-align: middle;text-align: center;">
-              <img class="picavatar"
-                   :src="item.image_url" />
-            </div>
-            <div class="ti_txt ti_dec floatleft">
-              <p class="topic_text topic_text1">#{{item.tag}}#</p>
-              <p class="topic_text topic_text2">{{item.total_feeds+""+$t('topic.t_1')}}</p>
-              <p class="topic_text topic_text3">{{item.desc}}</p>
-            </div>
-            <!-- <div class="ti_txt ti_name floatleft">
-              <p class="topic_text">{{item.total_feeds+""+$t('topic.t_1')}}</p>
-            </div> -->
-
+      <div class="topicitem"
+           v-for="(item, index) in attentionList"
+           :key="index"
+           @click="toLive(item.tag)">
+        <div class="outimg">
+          <div class="imgbox floatleft"
+               style="display: table-cell;vertical-align: middle;text-align: center;">
+            <img class="picavatar"
+                 :src="item.image_url" />
           </div>
+          <div class="ti_txt ti_dec floatleft">
+            <p class="topic_text">
+              <span class="topic_text_1">#{{item.tag}}#</span>
+              <span class="topic_text_2">{{item.total_feeds+""+$t('topic.t_1')}}</span>
+            </p>
+            <p class="topic_text topic_text_3">{{item.desc}}</p>
+          </div>
+          <!-- <div class="ti_txt ti_name floatleft">
+            <p class="topic_text">{{item.total_feeds+""+$t('topic.t_1')}}</p>
+          </div> -->
 
         </div>
-      </template>
+
+      </div>
     </div>
     <!-- 无话题列表 -->
     <div v-else>
@@ -79,7 +70,7 @@ const i18n = new VueI18n({
 });
 
 export default {
-  name: "attention",
+  name: "topicb",
   props: {
     ttype: {
       type: String,
@@ -180,7 +171,7 @@ export default {
 .att-icon {
   width: 40px;
   height: 40px;
-  margin-bottom: 1px;
+  margin-bottom: 30px;
 }
 
 .topmain .word {
@@ -192,8 +183,9 @@ export default {
 }
 
 .topmain .topicitem {
-  margin-top: 18px;
+  margin-bottom: 25px;
   width: 33%;
+  cursor: pointer;
 }
 
 .topmain .topicitem:nth-child(4n + 4),
@@ -203,15 +195,15 @@ export default {
 }
 
 .topmain .imgbox {
-  width: 123px;
-  height: 123px;
+  width: 80px;
+  height: 80px;
   overflow: hidden;
   border-radius: 3px;
 }
 
 .topmain .picavatar {
   width: 100%;
-  height: 123px;
+  height: 80px;
   object-fit: cover;
   border-radius: 3px;
 }
@@ -222,9 +214,8 @@ export default {
   overflow: hidden;
 }
 .ti_dec {
-  padding-left: 18px;
-  padding-right: 25px;
-  width: 195px;
+  padding-left: 10px;
+  width: 150px;
 }
 .ti_name {
   width: 90px;
@@ -233,7 +224,7 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* padding: 0 40px; */
+  padding: 0 40px;
 }
 .floatleft {
   float: left;
@@ -242,36 +233,38 @@ export default {
   padding-left: 10px;
 }
 
-.topic_text {
-  font-size: 12px;
-  color: #a8a8a8;
-  word-break: keep-all; /* 不换行 */
-  white-space: nowrap; /* 不换行 */
-  overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
+.topic_text_1 {
+  max-width: 90px;
+  display: block;
+  float: left;
+  white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 14px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #008ee5;
+  text-shadow: 0px 2px 4px rgba(216, 216, 216, 0.3);
+}
+.topic_text_2 {
+  float: right;
+  font-size: 14px;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
+  color: #333333;
+  text-shadow: 0px 2px 4px rgba(216, 216, 216, 0.3);
 }
-.topic_text1 {
-  font-size: 14px;
-  font-weight: 500;
-  color: rgba(250, 62, 84, 1);
-  padding: 5px 0;
-}
-.topic_text2 {
-  font-size: 14px;
-  font-weight: 400;
-  color: rgba(51, 51, 51, 1);
-  padding-bottom: 5px;
-}
-.topic_text3 {
-  font-weight: 400;
-  color: rgba(51, 51, 51, 1);
-  display: -webkit-box;
-  word-break: break-word;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+.topic_text_3 {
+  padding-top: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   overflow: hidden;
+  clear: both;
+  font-size: 14px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  text-shadow: 0px 2px 4px rgba(216, 216, 216, 0.3);
 }
 .novideoimg {
   width: 47px;
@@ -300,16 +293,20 @@ export default {
 }
 
 .tc_2_1 {
-  font-size: 18px;
-  font-family: PingFangSC-Medium, PingFang SC;
-  font-weight: 500;
-  color: rgba(51, 51, 51, 1);
-  line-height: 18px;
-  text-shadow: 0px 2px 4px rgba(216, 216, 216, 0.3);
   height: 45px;
   line-height: 45px;
-  box-shadow: 0px 2px 4px 0px rgba(216, 216, 216, 0.3),
-    0px -1px 0px 0px rgba(235, 235, 235, 1);
+  /* box-shadow: 0px 2px 4px 0px rgba(216, 216, 216, 0.3),
+    0px -1px 0px 0px rgba(235, 235, 235, 1); */
+  margin-bottom: 16px;
+}
+.tc_2_1 .tc_2_1_1 {
+  font-size: 18px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: bold;
+  color: #333333;
+  line-height: 18px;
+  text-shadow: 0px 2px 4px rgba(216, 216, 216, 0.3);
+  padding-left: 33px;
 }
 .tc_2_2 {
   height: auto;
@@ -318,31 +315,35 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 0 10px;
+  padding: 0 33px;
 }
 .tc_2_2 .topicitem {
   width: 100%;
   margin-bottom: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #d8d8d8;
+  cursor: pointer;
 }
 .tc_2_2 .imgbox {
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   overflow: hidden;
   border-radius: 3px;
 }
 
 .tc_2_2 .picavatar {
-  width: 100%;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   object-fit: cover;
   border-radius: 3px;
+  box-shadow: 0px 2px 4px 0px rgba(216, 216, 216, 0.3);
 }
 .tc_2_2 .ti_txt {
-  height: 60px;
-  line-height: 25px;
+  width: 190px;
+  /* height: 60px;
+  line-height: 25px; */
   overflow: hidden;
+  padding-top: 10px;
 }
 .topicitem:last-child {
   border-bottom: none;

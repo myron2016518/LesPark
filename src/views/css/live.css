@@ -51,7 +51,7 @@ body {
 }
 
 .LiveContent {
-  padding: 20px 0;
+  padding: 12px 0 20px 0;
   width: 1186px;
   margin: 0 auto;
   position: relative;
@@ -68,10 +68,32 @@ body {
   border-radius: 6px;
 }
 
+.liveIdAndDate {
+  position: absolute;
+  right: 466px;
+  top: 40px;
+  padding: 8px 20px;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+  font-family: PingFangSC-Regular;
+  font-size: 18px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  text-align: right;
+}
+
+.liveIdAndDate .rankID>img {
+  width: 23px;
+  height: 23px;
+  display: inline-block;
+  vertical-align: sub;
+}
+
 .liveTop {
   position: absolute;
-  left: 220px;
-  top: 20px;
+  left: 210px;
+  top: 40px;
   background: rgba(0, 0, 0, 0.25);
   border-radius: 100px;
   padding: 8px 20px;
@@ -115,7 +137,6 @@ body {
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 6px;
-  margin-left: 10px;
 }
 
 .radioPic {
@@ -438,7 +459,7 @@ body {
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .userCell {
@@ -542,6 +563,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
+  font-family: PingFangSC-Medium, PingFang SC;
 }
 
 .chatAvatar {
@@ -552,6 +574,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
+  /* background: linear-gradient(180deg, rgba(51, 51, 51, 1) 0%, rgba(51, 51, 51, 0) 100%); */
 }
 
 .chatInfo {
@@ -620,10 +643,11 @@ body {
 }
 
 .chatMessage {
-  font-family: PingFangSC-Medium;
   font-size: 15px;
   color: #FFFFFF;
-  letter-spacing: 0;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  line-height: 21px;
 }
 
 .nextLine {
@@ -660,8 +684,11 @@ body {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 25px;
   /* border: none; */
-  color: #333333;
   padding-left: 20px;
+  font-size: 14px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(168, 168, 168, 1);
 }
 
 .hasText {
@@ -686,12 +713,14 @@ body {
   text-align: center;
   font-family: PingFangSC-Regular, PingFang SC;
   width: 113px;
-  height: 133px;
+  height: 130px;
   float: left;
+  position: relative;
 }
 
 .giftContent .gc_row_1 .gc_col .gc_col_div {
-  padding-top: 20px;
+  padding-top: 10px;
+  border: 1px solid rgba(51, 51, 51, 0);
 }
 
 .giftContent .gc_row_1 .gc_col .changegift {
@@ -731,12 +760,26 @@ body {
   padding-bottom: 5px;
 }
 
+.giftContent .gc_row_1 .gc_col .gc_col_p3 {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  font-size: 11px;
+  font-weight: 400;
+  width: 26px;
+  height: 12px;
+  background: rgba(255, 197, 38, 1);
+  border-radius: 2px;
+  color: #FFFFFF;
+}
+
 .giftContent .gc_row_2 {
   height: 60px;
   line-height: 60px;
   color: #fff;
   padding: 0 20px;
   font-family: PingFangSC-Regular, PingFang SC;
+  padding-top: 5px;
 }
 
 .giftContent .gc_row_2 .gcr_col_1 {
@@ -750,12 +793,15 @@ body {
   color: #fff;
   font-size: 17px;
   border: none;
+  width: 55px;
+  height: 28px;
+  padding: 7px 8px;
 }
 
 .giftContent .gc_row_2 .gcr_col_i1 {
   font-size: 18px;
   font-weight: 400;
-  width: 65px;
+  width: 80px;
   float: left;
 }
 
@@ -770,7 +816,9 @@ body {
   border-bottom-right-radius: 25px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-
+  height: 36px;
+  margin-top: 11px;
+  line-height: 2px;
 
 }
 
@@ -782,6 +830,8 @@ body {
   border-bottom-left-radius: 25px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  height: 36px;
+
 }
 
 .sendBtn {
@@ -792,15 +842,16 @@ body {
   color: #FA3E54;
   letter-spacing: 0; */
   width: 60px;
-  height: 45px;
+  height: 40px;
   background: rgba(250, 62, 84, 1);
   border-radius: 12px;
   font-size: 20px;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
   color: rgba(255, 255, 255, 1);
-  line-height: 45px;
+  line-height: 40px;
   margin-left: 15px;
+  margin-top: 4px;
   text-align: center;
 }
 

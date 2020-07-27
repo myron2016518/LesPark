@@ -2,10 +2,15 @@
   <div class='main'>
     <div class="content">
       <div class="user_main">
-        <div class="top_main bg_color_fff">
+        <div class="top_main bg_color_fff tc_yy">
           <img class="tm_img"
+               :style="userinfodata.is_living ? '':'border:none;'"
                :src="userinfodata.avatar">
-          <span class="tm_tx1">VIP{{userinfodata.is_vip}}</span>
+          <img class="tm_tx1_1"
+               v-if="userinfodata.is_living"
+               src="../../../images/live1.png">
+
+          <!-- <span class="tm_tx1">VIP{{userinfodata.is_vip}}</span> -->
           <p class="tm_tx2">{{userinfodata.nickname}}</p>
           <p class="tm_tx3">
             <el-tag v-for="(item, index) in userinfodata.tag"
@@ -17,17 +22,17 @@
             </el-tag>
           </p>
         </div>
-        <div class="top_content_title bg_color_fff">
+        <div class="top_content_title bg_color_fff tc_yy">
           <div class="top_ct_1">
-            <p>{{userinfodata.fans_count}}</p>
+            <p class="top_ct_1_1">{{userinfodata.fans_count || 0}}</p>
             <p class="top_ct_2">粉丝</p>
           </div>
           <div class="top_ct_1">
-            <p class="top_ct_3">{{userinfodata.total_likes}}</p>
+            <p class="top_ct_3 top_ct_1_1">{{userinfodata.total_likes || 0}}</p>
             <p class="top_ct_2 top_ct_3">获赞</p>
           </div>
           <div class="top_ct_1">
-            <p>{{userinfodata.posts_count}}</p>
+            <p class="top_ct_1_1">{{userinfodata.posts_count || 0}}</p>
             <p class="top_ct_2">动态</p>
           </div>
         </div>
@@ -49,7 +54,7 @@
           </div>
         </div>
       </div>
-      <div class="top_hots bg_color_fff">
+      <div class="top_hots bg_color_fff tc_yy">
         <!-- 话题 -->
         <topichost ttype="2"></topichost>
       </div>
@@ -66,7 +71,7 @@ import bus from "Common/events-bus";
 import constans from 'Constans';
 import { Loading, Button, MessageBox, Message, Tabs, TabPane, Tag } from "element-ui";
 
-import topic from 'Views/components/topic';
+import topic from 'Views/components/topicb';
 import topicitem from 'Views/components/topicitem';
 
 import loadingImg from "Views/images/loading.png";
@@ -99,6 +104,7 @@ export default {
 
       },
       statuseslist: [],
+      action_type: '',
 
     }
   },
@@ -117,8 +123,8 @@ export default {
     // let id = Utils.getQueryString("id");
     let _arg = Utils.getQueryStringArgs();
 
-    console.log('===id===', _arg.id)
-    this.min_id = _arg.id;
+    // console.log('===id===', _arg.id)
+    // this.min_id = _arg.id;
     // 话题
     ajax.Get({
 
@@ -134,7 +140,7 @@ export default {
     }).then(ref => {
 
       this.userinfodata = ref.data;
-
+      this.userinfodata.tag = this.getTagList(ref.data.tag);
     }).catch(ref => {
       // console.log(ref);
     });
@@ -157,6 +163,31 @@ export default {
       let _g = _l[_n] || '';
       return _g;
     },
+    getTagList (_arr) {
+      let _lenghtcount = 0, _isno = true;
+      let _newArr = [];
+      _arr.map((_item, _idx) => {
+        let _txt = '';
+        console.log(_lenghtcount, _isno);
+        if (_lenghtcount <= 40 && _isno) {
+          for (var i = 0; i < _item.length; i++) {
+            if (_isno) {
+              if (_item.charCodeAt(i) > 128) {
+                _lenghtcount = _lenghtcount + 2;
+              } else {
+                _lenghtcount = _lenghtcount + 1;
+              }
+              _lenghtcount < 40 && (_txt = _txt + _item[i]);
+              _lenghtcount >= 40 && (_txt = _txt + "...", _isno = false);
+            };
+
+          }
+          _newArr.push(_txt);
+        }
+      });
+      // _lenghtcount > 40 && (_newArr[_newArr.length - 1] = _newArr[_newArr.length - 1] + '...');
+      return _newArr;
+    },
 
     getTagFeedList: function (_id, _type) {
       console.log('========', _type);
@@ -165,13 +196,17 @@ export default {
         return;
       }
       isLoading = true;
+
+      let _arg = Utils.getQueryStringArgs();
+      // console.log('===id===', _arg.id)
+
       // 1）推荐 Request: Get /v2/tag_hot_feed?count=20&last_id=0&min_id=5c7c7214a2d83840f0e4d6fc&tag=心情
       // 2）最新 Request: Get /v2/tag_feed?count=20&last_id=0&min_id=5c7c7214a2d83840f0e4d6fc&tag=心情
       let _url = '';
-      if (_this.user_id === _this.min_id) {
-        _url = userUrl + "/v2/his_feeds?count=10&action_type=view&&view_source=0";
+      if (_this.user_id === _arg.id) {
+        _url = userUrl + "/v2/his_feeds?count=10&action_type=view&view_source=0";
       } else {
-        _url = userUrl + "/v2/his_feeds?count=10&action_type=rec_view&&view_source=1";
+        _url = userUrl + "/v2/his_feeds?count=10&action_type=rec_view&view_source=1&user_id=" + _arg.id;
       }
       // let _url = userUrl + "/v2/" + (_type === 'first' ? "tag_hot_feed" : "tag_feed") + "?count=" + pageSize + "&tag=" + _id;
       _this.min_id && (_url = _url + "&min_id=" + _this.min_id);
@@ -188,23 +223,17 @@ export default {
         }
       }).then(ref => {
 
-
         let _d = ref;
-
-        if (_d.data.last_id.indexOf('||')) {
+        if (_d.data.last_id === 0 || _d.data.last_id === "0") {
+          _this.loadShow = false
+          _this.last_id = _d.data.last_id;
+        } else {
           let _last = _d.data.last_id.split('||');
           console.log('====last====', _last[_last.length - 1]);
           _this.last_id = _last[_last.length - 1];
-          _last[_last.length - 1] === '0' && (_this.loadShow = false)
-        } else {
-          _this.last_id = _d.data.last_id;
-          _this.last_id === '0' && (_this.loadShow = false)
-
         }
-
-        _this.statuseslist = [..._this.statuseslist, ..._d.data.statuses];
+        _d.data.statuses.length === 0 ? _this.loadShow = false : _this.statuseslist = [..._this.statuseslist, ..._d.data.statuses];
         _this.min_id = _d.data.min_id;
-
         isLoading = false;
 
       }).catch(ref => {
@@ -218,7 +247,7 @@ export default {
         let isLoading = false
         let bottomOfWindow = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight <= 400;
         if (bottomOfWindow && isLoading == false && _this.last_id != '' && _this.min_id != '') {
-          if (_this.last_id !== '0') {
+          if (_this.loadShow) {
             if (!isLoading) {
               let _arg = Utils.getQueryStringArgs();
               _this.getTagFeedList(_arg.id);
@@ -247,14 +276,14 @@ export default {
   height: auto;
   display: flex;
   width: 100%;
-  padding-top: 30px;
+  padding-top: 18px;
   padding-bottom: 30px;
   background-color: #f5f5f5;
   font-family: PingFangSC-Regular;
 }
 
 .content {
-  width: 1100px;
+  width: 1188px;
   margin: 0 auto;
   height: 100%;
   /* background-color: #fff; */
@@ -263,17 +292,23 @@ export default {
   background-color: #fff;
 }
 .user_main {
-  width: 750px;
+  width: 840px;
   float: left;
 }
+.tc_yy {
+  box-shadow: 0px 2px 4px 0px rgba(216, 216, 216, 0.3),
+    0px -2px 4px 0px rgba(216, 216, 216, 0.3);
+  border-radius: 6px;
+}
 .top_main {
-  height: 220px;
+  min-height: 220px;
   padding-top: 30px;
+  /* padding-bottom: 30px; */
   width: 100%;
   text-align: center;
-  margin-bottom: 10px;
-  border-radius: 6px;
+  margin-bottom: 12px;
   position: relative;
+  background: rgba(255, 255, 255, 1);
 }
 .top_main .tm_img {
   height: 100px;
@@ -281,6 +316,24 @@ export default {
   -o-object-fit: cover;
   object-fit: cover;
   border-radius: 50%;
+  border: 2px solid;
+  border-image: linear-gradient(
+      130deg,
+      rgba(190, 79, 246, 1),
+      rgba(255, 51, 102, 1)
+    )
+    2 2;
+  background-image: linear-gradient(
+      rgba(190, 79, 246, 1),
+      rgba(255, 51, 102, 1)
+    ),
+    linear-gradient(to bottom right, #0fd850, #5daf34);
+}
+.top_main .tm_tx1_1 {
+  position: absolute;
+  top: 117px;
+  left: 47%;
+  display: inline-block;
 }
 .top_main .tm_tx1 {
   position: absolute;
@@ -304,13 +357,14 @@ export default {
 }
 .top_main .tm_tx4 {
   margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 25px;
 }
 
 .top_content_title {
-  height: 80px;
+  height: 77px;
   width: initial;
   padding: 0 160px;
-  border-radius: 6px;
   text-align: center;
   margin-bottom: 10px;
 }
@@ -319,11 +373,18 @@ export default {
   width: 140px;
   height: 53px;
   padding: 12px 0px;
-  font-size: 12px;
   line-height: 25px;
+  font-family: PingFangSC-Medium, PingFang SC;
+}
+.top_ct_1 .top_ct_1_1 {
+  font-size: 17px;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
 }
 .top_content_title .top_ct_2 {
-  color: #808080;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(128, 128, 128, 1);
 }
 .top_content_title .top_ct_3 {
   border-right: 1px solid #ebebeb;
@@ -332,7 +393,7 @@ export default {
 
 .top_content {
   height: auto;
-  width: 750px;
+  width: 840px;
   float: left;
   border-radius: 6px;
 }
@@ -341,13 +402,13 @@ export default {
 }
 .top_hots {
   height: auto;
-  width: 340px;
+  width: 332px;
+  margin-left: 15px;
   float: right;
-  border-radius: 6px;
-  padding: 10px 0;
+  /* padding: 10px 0; */
 }
 .clickLoadMore {
-  padding: 10px;
+  padding: 30px 10px 10px 47%;
   text-align: center;
 }
 </style>

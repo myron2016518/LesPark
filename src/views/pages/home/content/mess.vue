@@ -1,10 +1,14 @@
 <template>
   <div>
     <div class="home">
+      <div class="homebg"></div>
       <div class="main">
         <div class="mainbox">
           <div class="clearflow">
-            <div class="fl l-main">
+            <div class="mobile">
+              <img src="../../../images/mobile1.png">
+            </div>
+            <div class="fr l-main">
               <div class="kouhao">
                 <img v-if="bannerImg==0"
                      src="../../../images/kouhao.png">
@@ -13,12 +17,12 @@
                 <img v-if="bannerImg==2"
                      src="../../../images/kouhao2.png">
               </div>
-              <div class="ewm">
+              <!-- <div class="ewm">
                 <div class="erweima">
                   <img :src='url.qr_img_url'>
                 </div>
                 <div>{{$t('home.download')}}</div>
-              </div>
+              </div> -->
               <div class="clearflow download">
                 <!-- 苹果 -->
                 <a :href="url.ios_url">
@@ -49,20 +53,18 @@
                 </a>
               </div>
             </div>
-            <div class="mobile">
-              <img src="https://img2.lespark.cn/web/mobile.jpeg">
-            </div>
+
           </div>
         </div>
       </div>
-      <div class="white-bg">
+      <!-- <div class="white-bg">
         <img class="auto-img"
              src="../../../images/bgwhite.png">
-      </div>
+      </div> -->
     </div>
 
     <!-- 关注 -->
-    <attention></attention>
+    <!-- <attention></attention> -->
 
     <!-- 话题 -->
     <topic></topic>

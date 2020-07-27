@@ -25,32 +25,38 @@ a:active {
 
 .header-container {
   width: 100%;
-  background: url(https://img2.lespark.cn/web/bg.png) repeat;
-  background-size: cover;
+  /* background: url(https://img2.lespark.cn/web/bg.png) repeat; */
+  /* background: #fff; */
+  /* background-size: cover; */
   position: relative;
   z-index: 10;
+  /* opacity: 0.5; */
 }
 
 .header {
-  width: 1100px;
-  height: 140px;
+  width: 1188px;
+  height: 100px;
   margin: 0 auto;
 }
 
 .logo {
   width: 256px;
   height: 52px;
-  margin-top: 44px;
+  margin-top: 40px;
+  margin-left: 40px;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+
 }
 
 .fr ul li {
   float: left;
   color: #fff;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 17px;
   text-align: center;
-  margin-top: 67px;
-  margin-left: 34px;
+  margin-top: 45px;
+  margin-right: 63px;
   position: relative;
   cursor: pointer;
 }
@@ -67,7 +73,7 @@ li>.line {
 }
 
 li:hover>.line {
-  animation: ad_width .1s linear forwards;
+  animation: ad_width .2s linear forwards;
 }
 
 @keyframes ad_width {
@@ -76,7 +82,7 @@ li:hover>.line {
   }
 
   to {
-    width: 60%
+    width: 100%
   }
 }
 
@@ -380,12 +386,17 @@ li:hover>.line {
 }
 
 #live-start a {
-  color: #9B9B9B;
+  font-size: 18px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
 }
 
 #live-start .pc-liver {
-  background: rgba(250, 62, 84, 0.70);
-  color: #fff
+  opacity: 0.8;
+  border: 1px solid rgba(250, 62, 84, 1);
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
 }
 
 #live-start .user_info,
@@ -400,14 +411,20 @@ li:hover>.line {
 
 .logo {
   background: url(../images/logo.png);
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
 }
 
 #live-start .logo {
   background: url(../images/logo_1.png);
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
 }
 
 .lala_live .logo {
   background: url(/img/logo_1.png);
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
 }
 
 #live-start .line {

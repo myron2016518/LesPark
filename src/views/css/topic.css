@@ -1,6 +1,6 @@
 .ti_h_1>sup.el-badge__content {
-  top: 41px;
-  right: 18px;
+  top: 44px;
+  right: 20px;
 }
 
 
@@ -23,4 +23,41 @@
   height: 4px;
   padding: 0 20px;
   margin-left: -20px;
+}
+
+.ti_comments_add .ti_ca_input {
+  width: 620px;
+  float: left;
+}
+
+.ti_comments_add .ti_ca_input .el-input__inner {
+  height: 36px;
+  border-radius: 19px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.ti_comments_add .ti_ca_btn {
+  /* background: rgba(168, 168, 168, 1); */
+  border-radius: 12px;
+  font-size: 20px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  /* color: rgba(255, 255, 255, 1); */
+  width: 60px;
+  height: 40px;
+  padding: 0px;
+  margin-left: 5px;
+  border: none;
+}
+
+.ti_imglist .ti_il_1 .el-image-viewer__mask {
+  opacity: 1;
+}
+
+.ti_imglist .ti_il_1 .el-icon-circle-close {
+  color: #fff;
+}
+
+.tc_remove_outling button {
+  outline: none;
 }

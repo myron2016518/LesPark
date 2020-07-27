@@ -10,7 +10,7 @@
           <p class="tmt_3">{{topiceinfo.desc}}</p>
         </div>
       </div>
-      <div class="top_content_title bg_color_fff">
+      <!-- <div class="top_content_title bg_color_fff">
         <el-tabs v-model="activeName"
                  class="tct_1"
                  @tab-click="handleClick">
@@ -21,6 +21,10 @@
                        class="tct_2"
                        name="second"></el-tab-pane>
         </el-tabs>
+      </div> -->
+      <div class="top_hots bg_color_fff">
+        <!-- 话题 -->
+        <topichost ttype="2"></topichost>
       </div>
       <div class="top_content ">
         <div class="topic_list"
@@ -40,10 +44,6 @@
         </div>
       </div>
 
-      <div class="top_hots bg_color_fff">
-        <!-- 话题 -->
-        <topichost ttype="2"></topichost>
-      </div>
     </div>
   </div>
 </template>
@@ -56,7 +56,7 @@ import bus from "Common/events-bus";
 import constans from 'Constans';
 import { Loading, Button, MessageBox, Message, Tabs, TabPane } from "element-ui";
 
-import topic from 'Views/components/topic';
+import topic from 'Views/components/topicb';
 import topicitem from 'Views/components/topicitem';
 
 import loadingImg from "Views/images/loading.png";
@@ -179,21 +179,17 @@ export default {
         }
       }).then(ref => {
 
-
         let _d = ref;
-
-        if (_d.data.last_id.indexOf('||')) {
+        if (_d.data.last_id === 0 || _d.data.last_id === "0") {
+          _this.loadShow = false
+          _this.last_id = _d.data.last_id;
+        } else {
           let _last = _d.data.last_id.split('||');
           console.log('====last====', _last[_last.length - 1]);
           _this.last_id = _last[_last.length - 1];
-          _last[_last.length - 1] === '0' && (_this.loadShow = false)
-        } else {
-          _this.last_id = _d.data.last_id;
         }
-
-        _this.statuseslist = [..._this.statuseslist, ..._d.data.statuses];
+        _d.data.statuses.length === 0 ? _this.loadShow = false : _this.statuseslist = [..._this.statuseslist, ..._d.data.statuses];
         _this.min_id = _d.data.min_id;
-
         _this.curtype = _this.activeName;
         isLoading = false;
 
@@ -206,9 +202,9 @@ export default {
       var _this = this;
       window.addEventListener('scroll', function () {
         let isLoading = false
-        let bottomOfWindow = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight <= 400;
+        let bottomOfWindow = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight <= 200;
         if (bottomOfWindow && isLoading == false && _this.last_id != '' && _this.min_id != '') {
-          if (_this.last_id !== '0') {
+          if (_this.loadShow) {
             if (!isLoading) {
               let _arg = Utils.getQueryStringArgs();
               _this.getTagFeedList(_arg.id, _this.activeName);
@@ -237,14 +233,14 @@ export default {
   height: auto;
   display: flex;
   width: 100%;
-  padding-top: 30px;
+  padding-top: 18px;
   padding-bottom: 30px;
   background-color: #f5f5f5;
   font-family: PingFangSC-Regular;
 }
 
 .content {
-  width: 1100px;
+  width: 1188px;
   margin: 0 auto;
   height: 100%;
   /* background-color: #fff; */
@@ -254,36 +250,47 @@ export default {
 }
 
 .top_main {
-  height: 250px;
-  width: 100%;
+  height: 215px;
+  /* width: 100%; */
+  width: 840px;
   margin-bottom: 10px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2px 4px 0px rgba(216, 216, 216, 0.3),
+    0px -2px 4px 0px rgba(216, 216, 216, 0.3);
   border-radius: 6px;
+  float: left;
 }
 .top_main .tm_img {
   float: left;
-  height: 250px;
-  width: 300px;
   -o-object-fit: cover;
   object-fit: cover;
+  width: 186px;
+  height: 187px;
+  border-radius: 10px;
+  margin-top: 14px;
+  margin-left: 14px;
 }
 .top_main .tm_txt {
-  width: 750px;
-  height: 210px;
+  padding-right: 60px;
+  width: 550px;
+  height: 190px;
   font-size: 14px;
   color: #333333;
   float: right;
-  padding-top: 40px;
-  padding-right: 20px;
+  padding-top: 24px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-size: 18px;
 }
 .tm_txt p {
-  font-family: PingFangSC-regular;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .tm_txt .tmt_1 {
-  color: #ff8000;
+  font-weight: 500;
+  color: #fa3e54;
 }
 .tm_txt .tmt_2 {
-  color: #3793e0;
+  font-weight: 400;
+  color: #333333;
 }
 .tm_txt .tmt_3 {
   display: -webkit-box;
@@ -291,6 +298,8 @@ export default {
   -webkit-box-orient: vertical;
   overflow: hidden;
   font-family: SourceHanSansSC-regular;
+  font-weight: 400;
+  color: #333333;
 }
 
 .top_content_title {
@@ -306,22 +315,26 @@ export default {
 
 .top_content {
   height: auto;
-  width: 750px;
+  width: 840px;
   float: left;
   border-radius: 6px;
 }
 .top_content .topic_list {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .top_hots {
   height: auto;
-  width: 340px;
   float: right;
-  border-radius: 6px;
-  padding: 10px 0;
+  /* padding: 10px 0; */
+  width: 332px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2px 4px 0px rgba(216, 216, 216, 0.3),
+    0px 2px 8px 0px rgba(216, 216, 216, 0.5),
+    0px -2px 8px 0px rgba(216, 216, 216, 0.5);
+  border-radius: 12px;
 }
 .clickLoadMore {
-  padding: 10px;
+  padding: 30px 10px 10px 47%;
   text-align: center;
 }
 </style>

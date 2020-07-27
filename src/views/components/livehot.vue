@@ -37,7 +37,7 @@
           <div class="fr">
             <div class="fl"
                  style="margin-right:5px; line-height: 23px;">
-              <img src="../images/view.png">
+              <img src="../images/view2.png">
             </div>
             <div class="fr view">{{item.view_num}}</div>
           </div>
@@ -247,7 +247,7 @@ export default {
 
 .imgboxing {
   /* margin-right: 20px; */
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   padding: 0 11px;
 }
 
@@ -259,14 +259,15 @@ export default {
   width: 163px;
   height: 163px;
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 .picavatar {
   width: 100%;
   height: 163px;
   object-fit: cover;
-  border-radius: 3px;
+  box-shadow: 0px 2px 4px 0px rgba(216, 216, 216, 0.3);
+  border-radius: 2px;
 }
 
 .outimg {
@@ -353,7 +354,7 @@ export default {
 .attention .nickname,
 .livehot .nickname {
   font-family: PingFangSC-Regular;
-  font-size: 14px;
+  font-size: 11px;
   color: #333333;
   /* width: 124px; */
   overflow: hidden;
@@ -365,14 +366,14 @@ export default {
 .attention .view,
 .livehot .view {
   font-family: PingFangSC-Regular;
-  font-size: 14px;
+  font-size: 11px;
   color: #a8a8a8;
   text-align: right;
   line-height: 23px;
 }
 
 .nic-view {
-  margin-top: 5px;
+  /* margin-top: 5px; */
 }
 
 .novideoimg {

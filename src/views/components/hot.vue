@@ -23,6 +23,7 @@
             <img class="picavatar"
                  :src="item.avatar"
                  v-else>
+
           </div>
           <div class="img-bg">
             <div class="img-bg-box">
@@ -33,6 +34,8 @@
             </div>
           </div>
         </div>
+        <img class="lala_live"
+             src="../images/live2.png">
         <div class="clearflow nic-view">
           <div class="fl nickname">{{item.nickname}}</div>
           <div class="lock fl"
@@ -234,6 +237,7 @@ export default {
 .imgboxing {
   margin-right: 20px;
   margin-bottom: 25px;
+  position: relative;
 }
 
 .imgboxing:nth-child(5n + 5) {
@@ -315,13 +319,13 @@ export default {
 /*热门*/
 .hot {
   width: 1100px;
-  margin: 70px auto;
+  margin: 36px auto;
 }
 
 .hot-icon {
   width: 40px;
   height: 40px;
-  margin-bottom: 36px;
+  margin-bottom: 30px;
 }
 
 .hot .word {
@@ -380,5 +384,11 @@ export default {
 .lock > img {
   width: 15px;
   height: 15px;
+}
+.lala_live {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 100;
 }
 </style>

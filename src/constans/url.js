@@ -3,8 +3,11 @@ let AllUrl = {
     // dev: 'http://www.lespark.cn',
     // dev: 'http://47.93.50.5:10084'
     // dev: "http://test.lespark.cn",
+
     dev: "http://localhost:8181/api",
     dev2: "http://localhost:8181/testlala",
+    // dev: "http://test.lespark.cn",
+    // dev2: "http://test.lespark.cn",
   },
   appid: {
     wx: "wxb8745f4b45b0c5fd",

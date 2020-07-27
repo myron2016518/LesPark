@@ -141,8 +141,8 @@ export default {
   },
   methods: {
     toLive: function (live_id) {
-      window.open("/live/" + live_id, "_blank");
-      // window.open('../live.html?id='+live_id ,'_blank');
+      // window.open("/live/" + live_id, "_blank");
+      window.open('../live.html?id=' + live_id, '_blank');
 
     },
     getList: function () {
